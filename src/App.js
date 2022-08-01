@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import styled from 'styled-components'
+import Todolist from './components/Todolist'
+import './App.css'
 
 function App() {
+  const [todos, setTodos] = useState([
+    {
+      text: 'Buy banana and apple',
+      isCompleted: false
+    },
+    {
+      text: 'Buy mango and vocado',
+      isCompleted: false
+    },
+    {
+      text: 'Buy strawberry and blueberry',
+      isCompleted: false
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      {todos.map((todo, index) => (
+        <Todolist key={index} index={index} todo={todo} />
+      ))}
+    </Container>
+  )
 }
 
-export default App;
+const Container = styled.div`
+  width: 100hvh;
+  height: 100vh;
+  background-color: #f1af71;
+  display: flex;
+  flex-direction: column;
+  justify-content:center  
+`
+
+export default App
