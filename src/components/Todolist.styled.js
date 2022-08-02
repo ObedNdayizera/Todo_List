@@ -18,6 +18,7 @@ export const StyledCard = styled.div`
         position: absolute;
         right: 0px;
         // height: 30px;
+        z-index: 1000;
     }
 
 `

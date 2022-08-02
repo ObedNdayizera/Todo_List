@@ -11,7 +11,7 @@ function App() {
     },
     {
       text: 'Buy mango and vocado',
-      isCompleted: true
+      isCompleted: false
     },
     {
       text: 'Buy strawberry and blueberry',
@@ -49,19 +49,26 @@ function App() {
     const newTodos = [...todos, { text }];
     setTodos(newTodos)
   }
-
+   
   const completeTodo = (index) => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
   }
 
+  const deleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  }
+
+
   return (
     <Container>
       <TodoForm addTodo={ addTodo } />
       <StyledList>
         {todos.map((todo, index) => (
-          <Todolist key={index} index={index} todo={todo} completeTodo={ completeTodo } />
+          <Todolist key={index} index={index} todo={todo} completeTodo={ completeTodo } deleteTodo={ deleteTodo } />
         ))}
       </StyledList>
     </Container>
@@ -73,6 +80,10 @@ const Container = styled.div`
   height: 500px;
   background-color: #12343b;
   border-radius: 8px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
 
   form p {
     text-align: center;
